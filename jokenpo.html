@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pedra,papel e tesoura</title>
+	<meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script type="text/javascript">
+      $('form1').submit(function (evt) {
+   evt.preventDefault(); 
+    })
+
+    $(document).ready(function() {
+    $(document).on('submit', '#my-form', function() {
+      
+      return false;
+     });
+});
+    var verif = 2;
+    var pPlayer = 0, pPC = 0;
+
+		function jokenpo(min, max){
+		var poss = max - min;
+    
+        
+        var opc1 = Math.random() * poss;
+        if(form1.escolhas.value==1){
+        	if(opc1 > 2){
+                  verif = 1;
+                 document.getElementById("ganho").innerHTML ="Sua escolha é Papel. Parabens, ganhou de Pedra";
+                  }else if(opc1 > 1){
+                    verif = 0;
+                  	document.getElementById("ganho").innerHTML ="Sua escolha é Papel. Derrota, perdeu pra Tesoura";
+                  }
+                  else {
+                    verif = 2;
+                  	document.getElementById("ganho").innerHTML ="Sua escolha é Papel. Empate , Papel com Papel";
+                  }
+              
+             
+               }else if (form1.escolhas.value==2) {
+              	if(opc1 > 2){
+                  verif = 1;
+                  document.getElementById("ganho").innerHTML ="Sua escolha é Pedra. Parabens, ganhou de Tesoura";
+                 } else if(opc1 > 1){
+                    verif = 0;
+                  	document.getElementById("ganho").innerHTML ="Sua escolha é Pedra. Derrota, perdeu pra Papel";
+                  }
+                  else {
+                    verif = 2
+                  	document.getElementById("ganho").innerHTML ="Sua escolha é Pedra. Empate , Pedra com Pedra";
+                  }
+                  }else if(form1.escolhas.value==3){
+                  	if(opc1 > 2){
+                    verif = 1;
+                    document.getElementById("ganho").innerHTML ="Sua escolha é Tesoura.<br> Parabens, ganhou de Papel";
+                  
+                  }else if(opc1 > 1){
+                    verif = 0;
+                  	document.getElementById("ganho").innerHTML ="Sua escolha é Tesoura.<br> Derrota, perdeu pra Pedra";
+                  }
+                  else {
+                    verif = 2
+                  	document.getElementById("ganho").innerHTML ="Sua escolha é Tesoura.<br> Empate , Tesoura com Tesoura";
+                 
+                }
+            }
+         }
+
+         function ponto(){
+        if(verif == 1){
+          pPlayer++;
+          document.getElementById("pontoPlayer").innerHTML = pPlayer;
+        }else if(verif == 0){
+          pPC++;
+          document.getElementById("pPC").innerHTML = pPC;
+        }
+      }
+      
+      
+    </script>
+
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Oxygen');
+
+    body{
+      background: #676863;
+    }
+
+    .box{
+      width:270px;
+      height: 300px;
+      background: white;
+      padding: 10px;
+      -moz-box-shadow:    inset 0 0 10px rgba(0,0,0, 0.6);
+     -webkit-box-shadow: inset 0 0 10px rgba(0,0,0, 0.6);
+     box-shadow:         inset 0 0 10px rgba(0,0,0, 0.6);
+    }
+
+    p{
+      font-family: 'Oxygen', sans-serif;
+    }
+
+    .form-control{
+      width: 100px;
+    }
+
+    #ganho{
+      color: #5b5b5b;
+      font-size: 13pt;
+    }
+    </style>
+</head>
+<body>
+  <center>
+  <img src="http://filhosuniversal.org/wp-content/uploads/2014/05/jokenpo.jpg" width="21%">
+  <div class="box">
+	<form name="form1" onsubmit="jokenpo(0, 3);ponto();" id="my-form">
+		<font style="font-size:14pt;" style="font-family: 'Oxygen', sans-serif;">Escolha uma das opções:</font>
+		<p>1)Papel</p> <p>2) Pedra</p> <p>3)Tesoura</p> 
+
+    <b><p>Player <font id="pontoPlayer">0</font> x <font id="pPC">0</font> Computador</p></b>
+    <input type="text" lenght="20" name="escolhas" size="2" class="form-control"/>
+		<input style="margin-top:10px;" type="submit" value="Vamos la" class="btn btn-success"/>
+    <p id="ganho"> </p>
+  </div>
+  </center>
+</body>
+</html>
